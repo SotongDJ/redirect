@@ -1,0 +1,33 @@
+div {text-align: center;}
+body {
+font-family: 'Noto Sans Mono', monospace, 'Noto Sans TC', sans-serif;
+}
+.content {text-align: center;}
+.center{
+background: white;
+color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 80vh;
+}
+.first {
+font-size: 10vw;
+}
+.second {
+font-size: 4vw;
+}
+.third {
+font-size: 3vw;
+}
+.fourth {
+font-size: 2vw;
+}
+.bar {
+overflow: hidden;
+position: fixed;
+bottom: 1vw;
+left: 0;
+width: 100%;
+text-align: center;
+}
