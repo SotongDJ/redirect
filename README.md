@@ -7,7 +7,7 @@
 
 Title | Link | Target
 ------|------|-------
-TITLE | LINK | TARGET
+My homepage (DJ Tratoh) | <https://xn--2os22eixx6na.xn--kpry57d/redirect/?ME> | <https://xn--2os22eixx6na.xn--kpry57d/>
 
 ## Privacy notice
 
