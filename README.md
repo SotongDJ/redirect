@@ -3,7 +3,7 @@
 - For redirection use
 - Targets are case-insensitive
 
-## Target Table
+## Redirection
 
 Title | Link | Target
 ------|------|-------
