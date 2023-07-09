@@ -1,6 +1,8 @@
 """Module collect link.html and convert into link.js"""
-import json
 from pathlib import Path
+import json
+import urllib.parse
+import idna
 import rtoml
 
 # pylint: disable=C0103
@@ -42,15 +44,31 @@ original_content = []
 with open("./README.md",encoding="utf-8") as readme_handle:
     original_content.extend(readme_handle.read().split("## "))
 
+def desc(input_str):
+    """Convert input_str into utf-8"""
+    if input_str[:3] == "xn-":
+        try:
+            output_str = idna.decode(input_str).encode().decode('utf-8')
+        except idna.IDNAError:
+            output_str = input_str
+    else:
+        output_str = urllib.parse.unquote(input_str)
+    return output_str
+
 new_content = []
 for content in original_content:
     if content[:11] == "Redirection":
         alt_content = "Redirection\n\nTitle | Link | Target\n------|------|-------\n"
         for key_str,value_dict in redirection_dict.items():
-            sub_title_str = value_dict["title"]
-            sub_link_str = value_dict["link"]
-            sub_target_str = value_dict["target"]
-            alt_content += f"{sub_title_str} | <{sub_link_str}> | <{sub_target_str}>\n"
+            ti_s = value_dict["title"]
+            li_t = value_dict["link"].split("://")[-1]
+            li_s = value_dict["link"]
+            ta_s = value_dict["target"].split("://")[-1]
+            ta_l = ta_s.replace("/","~~/~~").replace(".","~~.~~").split("~~")
+            tb_l = [desc(n) for n in ta_l]
+            tb_s = "".join(tb_l)
+            tc_s = value_dict["target"]
+            alt_content += f"{ti_s} | [{li_t}]({li_s}) | [{tb_s}]({tc_s})\n"
         alt_content += "\n"
         new_content.append(alt_content)
     else:
