@@ -59,7 +59,8 @@ new_content = []
 for content in original_content:
     if content[:11] == "Redirection":
         alt_content = "Redirection\n\nTitle | Link | Target\n------|------|-------\n"
-        for key_str,value_dict in redirection_dict.items():
+        for key_str in sorted(list(redirection_dict.keys())):
+            value_dict = redirection_dict[key_str]
             ti_s = value_dict["title"]
             li_t = value_dict["link"].split("://")[-1]
             li_s = value_dict["link"]
