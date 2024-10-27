@@ -1,6 +1,13 @@
 div {text-align: center;}
+span {white-space: nowrap;}
+a {color: inherit;}
 body {
 font-family: 'Noto Sans Mono', monospace, 'Noto Sans TC', sans-serif;
+width: 99%;
+height: 99%;
+margin: auto;
+background: white;
+color: black;
 }
 .content {text-align: center;}
 .center{
@@ -11,19 +18,46 @@ justify-content: center;
 align-items: center;
 height: 80vh;
 }
-.first {
-font-size: 10vw;
+
+@media screen and (orientation: portrait) {
+.first  {font-size: 5.5vh;}
+.second {font-size: 2.4vh;}
+.third  {font-size: 2vh;}
+.fourth {font-size: 1vh;}
+@keyframes hor-movement { from { margin-left: 5vw; } to { margin-left: 15vw; } }
+@keyframes ver-movement { from { margin-top: 5vh; } to { margin-top: 70vh; } }
+.bound {
+animation-name: hor-movement, ver-movement;
+animation-duration: 30s, 60s;
+animation-iteration-count: infinite;
+animation-direction: alternate;
+animation-timing-function: linear;
+width: 80vw;
+height: 25vh;
 }
-.second {
-font-size: 4vw;
 }
-.third {
-font-size: 3vw;
+
+@media screen and (orientation: landscape) {
+.first {font-size: 8vw;}
+.second {font-size: 3vw;}
+.third {font-size: 2vw;}
+.fourth {font-size: 1vw;}
+@keyframes hor-movement { from { margin-left: 2vw; } to { margin-left: 42vw; } }
+@keyframes ver-movement { from { margin-top: 5vh; } to { margin-top: 45vh; } }
+.bound {
+animation-name: hor-movement, ver-movement;
+animation-duration: 60s, 30s;
+animation-iteration-count: infinite;
+animation-direction: alternate;
+animation-timing-function: linear;
+width: 55vw;
+height: 40vh;
 }
-.fourth {
-font-size: 2vw;
 }
+    
 .bar {
+background: white;
+color: black;
 overflow: hidden;
 position: fixed;
 bottom: 1vw;
