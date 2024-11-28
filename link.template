@@ -1,0 +1,16 @@
++++
+<!--break type:header content-->
+title = "Tool - Target List"
+date = "{date}"
+short = ["url"]
+categories = []
+opengraph_description = "Target List"
+<!--break type:content format:html content-->
++++
+{table}
+<script>
+let target_core = document.getElementById("core");
+target_core.className = "";
+target_core.style.padding = "1rem"
+target_core.style.width = "min-content"
+</script>

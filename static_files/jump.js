@@ -25,12 +25,12 @@ var left = 3;
 var downloadTimer = setInterval(function(){
 if(left <= 0){
 clearInterval(downloadTimer);
-document.getElementById("enRemind").innerHTML = infoDict["content-end"]["en"];
-document.getElementById("hantRemind").innerHTML = infoDict["content-end"]["hant"];
-myFunction(document.getElementById("locationLink").href);
+document.getElementById("enRemind")&&(document.getElementById("enRemind").innerHTML = infoDict["content-end"]["en"]);
+document.getElementById("hantRemind")&&(document.getElementById("hantRemind").innerHTML = infoDict["content-end"]["hant"]);
+document.getElementById("locationLink")&&myFunction(document.getElementById("locationLink").href);
 } else {
-document.getElementById("enRemind").innerHTML = infoDict["content-start"]["en"].format(countdownDict[left]["en"]);
-document.getElementById("hantRemind").innerHTML = infoDict["content-start"]["hant"].format(countdownDict[left]["hant"]);
+document.getElementById("enRemind")&&(document.getElementById("enRemind").innerHTML = infoDict["content-start"]["en"].format(countdownDict[left]["en"]));
+document.getElementById("hantRemind")&&(document.getElementById("hantRemind").innerHTML = infoDict["content-start"]["hant"].format(countdownDict[left]["hant"]));
 };
 left -= 1;
 }, 1000);

@@ -28,30 +28,40 @@ let infoDict = {
 "content-end":{"en":"Redirect to target location:<br>{}","hant":"重新導向到目標：<br>【{}】"}
 }
 //
-url = window.location.href;
-var parameter = "";
-if ((!url.includes("?"))||url.split("?").length<2) {
-parameter = "";
-} else {
-parameter = url.split("?")[1].toUpperCase();
-};
-//
 function myFunction(target) {
 window.location.href = target;
+};
+//
+url = window.location.href;
+var parameter = "";
+var query = "";
+if ((!url.includes("?"))||url.split("?").length<2) {
+parameter = "";
+} else if ((!url.includes("="))||url.split("?")[1].split("=").length<2) {
+parameter = url.split("?")[1].toUpperCase();
+} else {
+parameter = url.split("?")[1].split("=")[0].toUpperCase();
+query = url.split("?")[1].split("=")[1];
 };
 //
 if (Object.keys(shortDict).includes(parameter)) {
 langStr = shortDict[parameter]["lang"]
 targetKey = shortDict[parameter]["key"]
+let target_URL = "";
+if(query.length>0 && Object.keys(jumpDict).includes("{}_QUERY".format(targetKey))){
+target_URL = jumpDict["{}_QUERY".format(targetKey)]['query']+query;
+}else{
+target_URL = jumpDict[targetKey]['url'];
+}
 document.getElementById("title").innerText = "Go to: {}".format(jumpDict[targetKey][langStr]);
 document.getElementById("locationLink").innerHTML = infoDict["locationLink"][langStr];
-document.getElementById("locationLink").href = jumpDict[targetKey]['url'];
+document.getElementById("locationLink").href = target_URL;
 var left = 3;
 var downloadTimer = setInterval(function(){
 if(left <= 0){
 clearInterval(downloadTimer);
 document.getElementById("content").innerHTML = infoDict["content-end"][langStr].format(jumpDict[targetKey][langStr]);
-myFunction(jumpDict[targetKey]['url']);
+myFunction(target_URL);
 } else {
 document.getElementById("content").innerHTML = infoDict["content-start"][langStr].format(countdownDict[left][langStr],jumpDict[targetKey][langStr]);
 };
